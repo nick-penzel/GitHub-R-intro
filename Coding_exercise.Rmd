@@ -1,0 +1,19 @@
+---
+title: "Coding exercise"
+author: "Nick Penzel"
+date: "2025-10-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+source("Setup.R")
+```
+
+```{r}
+data("knz_bison")
+```
+
