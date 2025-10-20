@@ -30,7 +30,7 @@ knz_bison -> bison
 ```{r}
 
 bison <- bison %>% 
-  mutate(age_at_obs = rec_year - animal_yob) -
+  mutate(age_at_obs = rec_year - animal_yob)
 
 
 ```
