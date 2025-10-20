@@ -13,7 +13,62 @@ knitr::opts_chunk$set(echo = TRUE)
 source("Setup.R")
 ```
 
+
 ```{r}
+
 data("knz_bison")
+
+knz_bison -> bison
+
+
+```
+
+
+1. Create a new column in the bison dataset that calculates the individual’s age at the time of observation.
+
+
+```{r}
+
+bison <- bison %>% 
+  mutate(age_at_obs = rec_year - animal_yob) -
+
+
+```
+
+2. Write a function that will first filter the bison dataset based on any user-specified weight threshold (returning the filtered data set).
+
+```{r}
+
+mass_filter_lessThan <- function(x) {
+    filter(bison,animal_weight <= x) 
+    }
+
+#test function
+less_than_mass(1000)
+
+```
+
+
+3.Create a boxplot showing weight distribution between male and female bison, and then conduct a t-test to see if weight is significantly difference between males and females.
+
+```{r}
+
+bison %>% 
+  ggplot()+
+  geom_boxplot(aes(x = animal_sex, y = animal_weight))+
+  labs(title = "Comparison of Bison Mass by sex", x = "Sex", y = "Mass (lbs)")
+
+
+hist(bison$animal_weight)
+hist(log(bison$animal_weight))
+bison %>% 
+  levene_test(log(animal_weight) ~ animal_sex)
+
+bison %>% 
+  t_test(animal_weight~animal_sex, var.equal = F, detailed = F)
+
+```
+
+ 
 ```
 
